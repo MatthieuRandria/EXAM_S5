@@ -2,26 +2,43 @@
 namespace App\Service;
 
 use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mailer\Transport;
+use Symfony\Component\Mailer\Mailer;
 use Symfony\Component\Mime\Email;
 
 class EmailService
 {
     private MailerInterface $mailer;
-    private string $from = "aonio5446@gmail.com";
+
     public function __construct(MailerInterface $mailer)
     {
-        $this->mailer = $mailer;
+        $this->mailer=$mailer;
     }
 
-    public function sendEmail(string $to, string $subject, string $textContent, string $htmlContent): void
+    public function sendEmail(string $recipient, string $subject, string $message) : void
     {
-        $email = (new Email())
-            ->from($this->from)
-            ->to($to)
-            ->subject($subject)
-            ->text($textContent)
-            ->html($htmlContent);
-
-        $this->mailer->send($email);
+        try{
+            // Configuration du transport SMTP
+            $transport = Transport::fromDsn('gmail://mandaniainaandria7@gmail.com:nqvarumhvradsauj@default');
+            
+            // Initialisation du Mailer
+            $mailer = new Mailer($transport);
+        
+            // Création de l'email
+            $email = (new Email())
+                ->from('mandaniainaandria7@gmail.com')
+                ->to($recipient)
+                ->subject($subject)
+                ->text($message)
+                ->html("<p>{$message}</p>");
+        
+            // Envoi de l'email
+            $this->mailer->send($email);
+        }
+        catch(\Exception $e){
+            throw $e;
+        }
+        
     }
+
 }
