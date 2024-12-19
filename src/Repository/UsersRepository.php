@@ -41,6 +41,28 @@
                 throw new \Exception('User not found');
             }
         }
+
+        public function incrementLoginAttempts(int $userId): void
+        {
+            $this->createQueryBuilder('u')
+                ->update()
+                ->set('u.tentative_connexion', 'u.tentative_connexion + 1')
+                ->where('u.id_user = :userId')
+                ->setParameter('userId', $userId)
+                ->getQuery()
+                ->execute();
+        }
+        
+        public function resetLoginAttempts(int $userId): void
+        {
+            $this->createQueryBuilder('u')
+                ->update()
+                ->set('u.tentative_connexion', 0)
+                ->where('u.id_user = :userId')
+                ->setParameter('userId', $userId)
+                ->getQuery()
+                ->execute();
+        }
     }
 
 ?>
