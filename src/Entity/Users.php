@@ -5,12 +5,12 @@
     use Doctrine\ORM\Mapping as ORM;
 
     #[ORM\Entity]
-    #[ORM\Table(name: "users")]
+    #[ORM\Table(name: "Users")]
     class Users {
         #[ORM\Id]
         #[ORM\GeneratedValue(strategy: "AUTO")]
         #[ORM\Column(type: "integer")]
-        private $idUser;
+        private $id_user;
 
         #[ORM\Column(type: "string", length: 150)]
         private $name;
@@ -31,11 +31,11 @@
         private $tentative_connexion;
 
         #[ORM\ManyToOne(targetEntity: "Genre")]
-        #[ORM\JoinColumn(name: "idGenre", referencedColumnName: "idGenre")]
+        #[ORM\JoinColumn(name: "id_genre", referencedColumnName: "id_genre")]
         private $genre;
 
         #[ORM\ManyToOne(targetEntity: "Role")]
-        #[ORM\JoinColumn(name: "idRole", referencedColumnName: "idRole")]
+        #[ORM\JoinColumn(name: "id_role", referencedColumnName: "id_role")]
         private $role;
 
         // Constructor
@@ -52,12 +52,12 @@
         }
 
         // Getter and Setter methods
-        public function getIdUser(): int {
-            return $this->idUser;
+        public function getId_user(): int {
+            return $this->id_user;
         }
 
-        public function setIdUser(int $idUser): self {
-            $this->idUser = $idUser;
+        public function setId_user(int $id_user): self {
+            $this->id_user = $id_user;
             return $this;
         }
 

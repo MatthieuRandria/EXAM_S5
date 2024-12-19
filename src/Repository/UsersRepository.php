@@ -2,7 +2,9 @@
 
     namespace App\Repository;
 
-    use App\Entity\User;
+    use App\Entity\Users;
+    use App\Entity\Role;
+    use App\Entity\Genre;
     use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
     use Doctrine\Persistence\ManagerRegistry;
     use Doctrine\ORM\EntityManagerInterface;
@@ -11,8 +13,13 @@
         private EntityManagerInterface $entityManager;
 
         public function __construct(ManagerRegistry $registry, EntityManagerInterface $entityManager) {
-            parent::__construct($registry, User::class);
+            parent::__construct($registry, Users::class);
             $this->entityManager = $entityManager;
+        }
+
+        public function updateAttempt(Users $user, $attempt): void{
+            $user->setTentative_connexion($attempt);
+            $this->entityManager->flush();
         }
 
         public function updateUserInfo(int $idUser, string $name, \DateTime $date_birth, int $idGenre): void {
