@@ -33,6 +33,7 @@ class EmailService
                 ->html("<p>{$message}</p>");
         
             // Envoi de l'email
+            $this->mailer=$mailer;
             $this->mailer->send($email);
         }
         catch(\Exception $e){

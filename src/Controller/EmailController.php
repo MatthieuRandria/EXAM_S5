@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Service\EmailService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Attribute\Route;
 
 
@@ -17,13 +18,9 @@ class EmailController extends AbstractController
         $this->emailSender=$emailSender;
     }
   
-    #[Route('/send_email', name:'send_email', methods:'POST')]
-    public function sendEmail (Request $request): JsonResponse
+    #[Route('/send_email/{recipient}/{subject}/{message}', name:'send_email', methods:'POST')]
+    public function sendEmail ($recipient, $subject, $message): JsonResponse
     {
-        $data=json_decode($request->getContent(), true);
-        $recipient=$data['email'] ?? null;
-        $subject=$data['subject'] ?? 'Notification';
-        $message=$data['message'] ?? null;
         if(!$recipient || !$message){
             return new JsonResponse(['error' => 'Email and message are required'], 400);
         }

@@ -10,7 +10,7 @@
         #[ORM\Id]
         #[ORM\GeneratedValue(strategy: "AUTO")]
         #[ORM\Column(type: "integer")]
-        private $idGenre;
+        private $id_genre;
 
         #[ORM\Column(type: "string", length: 50)]
         private $type;
@@ -25,8 +25,8 @@
             return $this->idGenre;
         }
 
-        public function setIdGenre(int $idGenre): self {
-            $this->idGenre = $idGenre;
+        public function setIdGenre(int $id_genre): self {
+            $this->idGenre = $id_genre;
             return $this;
         }
 

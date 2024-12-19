@@ -10,7 +10,7 @@
         #[ORM\Id]
         #[ORM\GeneratedValue(strategy: "AUTO")]
         #[ORM\Column(type: "integer")]
-        private $idRole;
+        private $id_role;
 
         #[ORM\Column(type: "string", length: 50)]
         private $name;
@@ -21,12 +21,12 @@
         }
 
         // Getter and Setter methods
-        public function getIdRole(): int {
-            return $this->idRole;
+        public function getId_role(): int {
+            return $this->id_role;
         }
 
-        public function setIdRole(int $idRole): self {
-            $this->idRole = $idRole;
+        public function setId_role(int $id_role): self {
+            $this->id_role = $id_role;
             return $this;
         }
 
