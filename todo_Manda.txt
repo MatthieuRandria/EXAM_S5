@@ -8,7 +8,3 @@ Limite des nombres de tentative de connexion
     reinitialisation du nb de tentative via email
         envoie url de reinitialisation
         updateUser -> tentative=0
-
-
-#DATABASE_URL="postgresql://postgres:postgre@127.0.0.1:5432/fournisseur_identite?serverVersion=9&charset=utf8"
-#MAILER_DSN=smtp://mandaniainaandria7@gmail.com:tbndmmfeewjkkfdl@smtp.gmail.com:587?encryption=tls$auth_mode=login
